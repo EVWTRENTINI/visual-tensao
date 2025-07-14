@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VisTen</title>
+
+<!-- página toda preta, sem barras de rolagem -->
+<style>
+html,body{margin:0;padding:0;background:#000;overflow:hidden}
+canvas       {width:100vw;height:100vh;display:block}
+</style>
+</head>
+<body>
+
+<!-- o canvas que raylib vai assumir -->
+<canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+
+<script>
+/*  Mínimo que o runtime do Emscripten espera.
+    – canvas: devolvemos o elemento que criámos
+    – setStatus/print/printErr: vazios p/ silenciar logs
+*/
+var Module = {
+  canvas: (function(){ return document.getElementById('canvas'); })(),
+  setStatus : function(){},
+  print     : function(){},
+  printErr  : function(){}
+};
+</script>
+
+<!-- o loader gerado pelo emcc -->
+<script src="VisTen.js"></script>
+</body>
+</html>
